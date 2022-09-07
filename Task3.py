@@ -8,20 +8,44 @@
 # - x=2; y=4-> 1
 # - x=-34; y=-30 -> 3
 
-x = float(input('Введите координату Х: '))
-y = float(input('Введите координату Y: '))
-if x == 0 and y == 0:
-    a = "в начале координат"
-elif x == 0 and y != 0:
-    a = "на оси y"
-elif x != 0 and y == 0:
-    a = "на оси x"
-elif x > 0 and y > 0:
-    a = "в I четверти плоскости"
-elif x < 0 and y > 0:
-    a = "в II четверти плоскости"
-elif x < 0 and y < 0:
-    a = "в III четверти плоскости"
-elif x > 0 and y < 0:
-    a = "в IV четверти плоскости"
-print(f"Точка с координатами {x}, {y} находится {a}. ")
+def check(x, y):
+    if x.isdigit() and y.isdigit():
+        return True
+    else:
+        try:
+            float(x)
+            float(y)
+            return True
+        except ValueError:
+            return False
+
+
+def coordinat(x, y):
+    if float(x) == 0 and float(y) == 0:
+        a = "в начале координат"
+    elif float(x) == 0 and float(y) != 0:
+        a = "на оси y"
+    elif float(x) != 0 and float(y) == 0:
+        a = "на оси x"
+    elif float(x) > 0 and float(y) > 0:
+        a = "в I четверти плоскости"
+    elif float(x) < 0 and float(y) > 0:
+        a = "в II четверти плоскости"
+    elif float(x) < 0 and float(y) < 0:
+        a = "в III четверти плоскости"
+    elif float(x) > 0 and float(y) < 0:
+        a = "в IV четверти плоскости"
+    print(f"Точка с координатами {x}, {y} находится {a}. ")
+
+
+x = input('Введите координату Х: ')
+y = input('Введите координату Y: ')
+
+while True:
+    if check(x, y) == False:
+        print('НЕ ВЕРНЫЙ ВВОД. ПОВТОРИТЕ ПОПЫТКУ ЕЩЕ')
+        x = input('Введите координату Х: ')
+        y = input('Введите координату Y: ')
+    else:
+        coordinat(x, y)
+        break
